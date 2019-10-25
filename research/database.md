@@ -4,15 +4,15 @@ One critical question is where to find the recipes database. Some possible optio
 - [Allrecipes REST API](https://apps.allrecipes.com/): While this seems hosted inside AllRecipes servers, I wasn't able to find further info on how to use this;
 - [API BigOven](http://api.bigoven.com/): A paid REST API. Won't work for me;
 - [python-allrecipes](http://api.bigoven.com/): A webcrawler-based solution;
-- [Food2Fork](https://www.food2fork.com/about/api): A REST API that is free for educational purposes that gathers recipes from several different sources. Perfect! Fee queries are limited to 50/day.
+- [Food2Fork](https://www.food2fork.com/about/api): A REST API that is free for educational purposes, gathering recipes from several different sources. Perfect! Free queries are limited to 50/day.
 
 ## Food2Fork
 After signing up for a free account, I started experimenting with the API. The API is very straightforward. For example, this is how you query recipes based on chicken and tomatoes:
 ```
 https://www.food2fork.com/api/search?key=YOUR_API_KEY&q=chicken%20tomatoes&page=2&sort=r
 ```
-The JSON result is something like (here, I present only two results):
-```
+The JSON result is something like (only two results are presented):
+```JSON
 {
   "count": 2,
   "recipes": [
@@ -40,7 +40,7 @@ The JSON result is something like (here, I present only two results):
 }
 ```
 
-Queries will return 30 results by default and you need to use the REST parameters to navigate all results. The ones I used are:
+Each query returns 30 results maximum. You also have two parameters to play around:
 - `page=1`: Specify the results page (again, only 30 results are displayed per page);
 - `sort=r`: Sort results by ratings.
 
