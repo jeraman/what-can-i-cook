@@ -44,6 +44,35 @@ Each query returns 30 results maximum. You also have two parameters to play arou
 - `page=1`: Specify the results page (again, only 30 results are displayed per page);
 - `sort=r`: Sort results by ratings.
 
+Alternatively, one might want to get more details on  specific recipes (e.g., what ingredients are necessary for this particular recipe). In this case, you can do the following query:
+```
+https://www.food2fork.com/api/get?key=YOUR_API_KEY&rId=35382
+```
+
+Which results in a JSON object like:
+```JSON
+{
+  "recipe": {
+    "publisher": "Closet Cooking",
+    "f2f_url": "http://food2fork.com/view/35382",
+    "ingredients": [
+      "2 jalapeno peppers, cut in half lengthwise and seeded",
+      "2 slices sour dough bread",
+      "1 tablespoon butter, room temperature",
+      "2 tablespoons cream cheese, room temperature",
+      "1/2 cup jack and cheddar cheese, shredded",
+      "1 tablespoon tortilla chips, crumbled\n"
+    ],
+    "source_url": "http://www.closetcooking.com/2011/04/jalapeno-popper-grilled-cheese-sandwich.html",
+    "recipe_id": "35382",
+    "image_url": "http://static.food2fork.com/Jalapeno2BPopper2BGrilled2BCheese2BSandwich2B12B500fd186186.jpg",
+    "social_rank": 100,
+    "publisher_url": "http://closetcooking.com",
+    "title": "Jalapeno Popper Grilled Cheese Sandwich"
+  }
+}
+```
+
 And that's it! I'm good to go!
 
 
