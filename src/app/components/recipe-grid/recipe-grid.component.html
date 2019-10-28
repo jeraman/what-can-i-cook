@@ -1,9 +1,11 @@
 <div>
-<!--p>recipe-grid works!</p-->
-<app-search-recipes (searchRecipes)="searchRecipes($event)"></app-search-recipes>
-<app-recipe-item
-  *ngFor="let recipe of recipeGrid"
-  [recipeItem]="recipe"
->
-</app-recipe-item>
+  <!--p>recipe-grid works!</p-->
+  <app-search-recipes (searchRecipes)="searchRecipes($event)"></app-search-recipes>
+
+  <app-recipe-item
+    *ngFor="let recipe of recipeGrid"
+    [recipeItem]="recipe"
+  >
+  </app-recipe-item>
+  
 </div>

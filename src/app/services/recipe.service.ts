@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Recipe } from '../models/Recipe'
+import { JSONRecipeFormat } from '../models/JSONRecipeFormat'
 import keyConfig from '../../assets/js/keyConfig.json';
 
 //declare const getKey:any;
@@ -12,18 +13,32 @@ import keyConfig from '../../assets/js/keyConfig.json';
 })
 
 export class RecipeService {
-  recipeURL: string = "https://www.food2fork.com/api/search?key="+ keyConfig.key +"&q=chicken%20tomatoes&page=1&sort=r";
+  baseURL: string = "https://www.food2fork.com/api/search?";
+  pageNumber: number = 1;
+  sort: string = "r";
 
   constructor(private http:HttpClient) {
     //console.log(this.recipeURL);
   }
 
-  getRecipes():Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(this.recipeURL);
+  formatSearchQueryWithIngredients(ingredients:string):string {
+      return this.baseURL +
+              "key=" + keyConfig.key +
+              "&q=" + ingredients +
+              "&page=" + this.pageNumber +
+              "&sort=" + this.sort;
+  }
+
+  getRecipes(ingredients:string):Observable<JSONRecipeFormat[]> {
+    var query = this.formatSearchQueryWithIngredients(ingredients);
+    console.log("my query is: " + query);
+    //return this.http.get<Recipe[]>(query));
+    //return this.http.get<Recipe[]>(query)
+    //                .map(result => <Recipe[]>result.recipes);
+    return this.http.get<JSONRecipeFormat[]>(query);
   }
 
   getRecipesPlaceholder(ingredients:string):Recipe[] {
-    console.log("service will query the following ingredients: " + ingredients);
     return [
       {
         "publisher": "BBC Food",

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../../models/Recipe';
+import { JSONRecipeFormat } from '../../models/JSONRecipeFormat';
 import { RecipeService } from '../../services/recipe.service';
 
 @Component({
@@ -23,7 +24,16 @@ export class RecipeGridComponent implements OnInit {
   }
 
   searchRecipes(ingredients:string) {
-    this.recipeGrid = this.recipeService.getRecipesPlaceholder(ingredients);
+    //this.recipeGrid = this.recipeService.getRecipesPlaceholder(ingredients);
+    //this.recipeGrid = this.recipeService.getRecipes(ingredients);
+
+    //check the following link for details on why I'm doing (data as any):
+    // https://angular.io/guide/http
+    this.recipeService.getRecipes(ingredients)
+                      .subscribe( data => {
+                          this.recipeGrid = (data as any).recipes;
+    });
+
   }
 
 }
