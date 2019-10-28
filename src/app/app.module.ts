@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { RecipeGridComponent } from './components/recipe-grid/recipe-grid.component';
 import { RecipeItemComponent } from './components/recipe-item/recipe-item.component';
 import { SearchRecipesComponent } from './components/search-recipes/search-recipes.component';
+import { IngredientListComponent } from './components/ingredient-list/ingredient-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipeGridComponent,
     RecipeItemComponent,
-    SearchRecipesComponent
+    SearchRecipesComponent,
+    IngredientListComponent
   ],
   imports: [
     BrowserModule,

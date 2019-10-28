@@ -22,6 +22,8 @@ export class RecipeService {
     //console.log(this.recipeURL);
   }
 
+  //querying by ingredients
+  //https://www.food2fork.com/api/search?key={YOUR_API_KEY}&q=chicken%20breast&page=2
   formatSearchQuery():string {
       return this.baseURL +
               "key=" + keyConfig.key +
@@ -29,6 +31,9 @@ export class RecipeService {
               "&page=" + this.pageNumber +
               "&sort=" + this.sort;
   }
+
+  //getting one specific recipes
+  //https://www.food2fork.com/api/get?key={YOUR_API_KEY}&rId=35382
 
   setIngredients(ingredients:string) {
     this.ingredients = ingredients;
