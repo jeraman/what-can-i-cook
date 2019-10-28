@@ -14,6 +14,7 @@ import keyConfig from '../../assets/js/keyConfig.json';
 
 export class RecipeService {
   baseURL: string = "https://www.food2fork.com/api/search?";
+  ingredients: string;
   pageNumber: number = 1;
   sort: string = "r";
 
@@ -21,20 +22,38 @@ export class RecipeService {
     //console.log(this.recipeURL);
   }
 
-  formatSearchQueryWithIngredients(ingredients:string):string {
+  formatSearchQuery():string {
       return this.baseURL +
               "key=" + keyConfig.key +
-              "&q=" + ingredients +
+              "&q=" + this.ingredients +
               "&page=" + this.pageNumber +
               "&sort=" + this.sort;
   }
 
+  setIngredients(ingredients:string) {
+    this.ingredients = ingredients;
+  }
+
+  resetPage() {
+    this.pageNumber = 1;
+  }
+
+  incrementPage() {
+    this.pageNumber = this.pageNumber+1;
+  }
+
   getRecipes(ingredients:string):Observable<JSONRecipeFormat[]> {
-    var query = this.formatSearchQueryWithIngredients(ingredients);
+    this.setIngredients(ingredients);
+    var query = this.formatSearchQuery();
     console.log("my query is: " + query);
-    //return this.http.get<Recipe[]>(query));
-    //return this.http.get<Recipe[]>(query)
-    //                .map(result => <Recipe[]>result.recipes);
+    return this.http.get<JSONRecipeFormat[]>(query);
+  }
+
+  loadMore():Observable<JSONRecipeFormat[]> {
+    this.incrementPage();
+    var query = this.formatSearchQuery();
+    console.log("my query is: " + query);
+    this.incrementPage();
     return this.http.get<JSONRecipeFormat[]>(query);
   }
 
