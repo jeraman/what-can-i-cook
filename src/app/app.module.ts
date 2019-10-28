@@ -1,22 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RecipeGridComponent } from './components/recipe-grid/recipe-grid.component';
 import { RecipeItemComponent } from './components/recipe-item/recipe-item.component';
+import { SearchRecipesComponent } from './components/search-recipes/search-recipes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipeGridComponent,
-    RecipeItemComponent
+    RecipeItemComponent,
+    SearchRecipesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

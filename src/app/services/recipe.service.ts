@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Recipe } from '../models/Recipe'
 import keyConfig from '../../assets/js/keyConfig.json';
 
 //declare const getKey:any;
@@ -10,15 +12,17 @@ import keyConfig from '../../assets/js/keyConfig.json';
 })
 
 export class RecipeService {
-  //recipeURL: 'https://www.food2fork.com/api/search?key='+ config.API_KEY +'&q=chicken%20tomatoes&page=2&sort=r';
+  recipeURL: string = "https://www.food2fork.com/api/search?key="+ keyConfig.key +"&q=chicken%20tomatoes&page=1&sort=r";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {
+    //console.log(this.recipeURL);
+  }
 
-  getRecipes() {
-    console.log("alou");
-    console.log(keyConfig.key);
-    //console.log(getKey());
+  getRecipes():Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(this.recipeURL);
+  }
 
+  getRecipesPlaceholder():Recipe[] {
     return [
       {
         "publisher": "BBC Food",
@@ -42,4 +46,5 @@ export class RecipeService {
       }
     ]
   }
+
 }

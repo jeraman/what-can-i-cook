@@ -1,6 +1,8 @@
 # What Can I Cook?
 Want to finish the food in your fridge before expiration?
+
 No worries, this app is here for you.
+
 Tell it the food you have. Get recipe ideas.
 
 I started this small project to improve my Angular skills.

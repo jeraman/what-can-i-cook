@@ -13,7 +13,18 @@ export class RecipeGridComponent implements OnInit {
   constructor(private recipeService:RecipeService) { }
 
   ngOnInit() {
-    this.recipeGrid = this.recipeService.getRecipes();
+    //this.recipeGrid = this.recipeService.getRecipesPlaceholder();
+    /*
+    THIS IS THE RIGHT WAY TO LOAD FORM THE SERVER
+    this.recipeService.getRecipes().subscribe( recipes => {
+      this.recipeGrid = recipes;
+    });
+    */
+  }
+
+  searchRecipes(ingredients:string) {
+    console.log("ingredients to search: " + ingredients);
+    this.recipeGrid = this.recipeService.getRecipesPlaceholder();
   }
 
 }
