@@ -8,7 +8,7 @@
   >
   </app-recipe-item>
 
-  <form class="form" (ngSubmit)="loadMore()">
+  <form class="form" (ngSubmit)="loadMore()" *ngIf="recipeGrid!=undefined">
       <input type="submit" value="Load more!" class="btn">
   </form>
 
