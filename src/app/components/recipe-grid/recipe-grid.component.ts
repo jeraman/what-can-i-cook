@@ -14,28 +14,24 @@ export class RecipeGridComponent implements OnInit {
   constructor(private recipeService:RecipeService) { }
 
   ngOnInit() {
-    //this.recipeGrid = this.recipeService.getRecipesPlaceholder();
-    /*
-    THIS IS THE RIGHT WAY TO LOAD FORM THE SERVER
-    this.recipeService.getRecipes().subscribe( recipes => {
-      this.recipeGrid = recipes;
-    });
-    */
   }
 
   searchRecipes(ingredients:string) {
-    //this.recipeGrid = this.recipeService.getRecipesPlaceholder(ingredients);
-    //this.recipeGrid = this.recipeService.getRecipes(ingredients);
-
     //reset the result pages
     this.recipeService.resetPage();
 
+    /*
+    //RIGHT WAY TO DO IT!
     //check the following link for details on why I'm doing (data as any):
     // https://angular.io/guide/http
     this.recipeService.getRecipes(ingredients)
                       .subscribe( data => {
                           this.recipeGrid = (data as any).recipes;
     });
+    */
+
+    //placeholder function!
+    this.recipeGrid = this.recipeService.getRecipesPlaceholder(ingredients);
   }
 
   loadMore() {

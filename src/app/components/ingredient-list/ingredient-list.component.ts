@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ingredient-list.component.css']
 })
 export class IngredientListComponent implements OnInit {
+  private isHidden:boolean = false;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onClick() {
+    this.isHidden = !this.isHidden;
+  }
 }
