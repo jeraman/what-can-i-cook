@@ -23,8 +23,7 @@ export class RecipeGridComponent implements OnInit {
   }
 
   searchRecipes(ingredients:string) {
-    console.log("ingredients to search: " + ingredients);
-    this.recipeGrid = this.recipeService.getRecipesPlaceholder();
+    this.recipeGrid = this.recipeService.getRecipesPlaceholder(ingredients);
   }
 
 }

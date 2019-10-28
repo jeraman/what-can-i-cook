@@ -22,7 +22,8 @@ export class RecipeService {
     return this.http.get<Recipe[]>(this.recipeURL);
   }
 
-  getRecipesPlaceholder():Recipe[] {
+  getRecipesPlaceholder(ingredients:string):Recipe[] {
+    console.log("service will query the following ingredients: " + ingredients);
     return [
       {
         "publisher": "BBC Food",
