@@ -1,18 +1,13 @@
 <div>
 
 <p>
-You're missing X ingredients!
+You're missing {{ ingredientList.length }} ingredients!
 <button (click)="onClick()"> Which ones?</button>
 </p>
 
 <div name="ingredients" *ngIf="isHidden!=false">
 <small><i>
-  <p>2 jalapeno peppers, cut in half lengthwise and seeded,</p>
-  <p>2 slices sour dough bread,</p>
-  <p>1 tablespoon butter, room temperature,</p>
-  <p>2 tablespoons cream cheese, room temperature,</p>
-  <p>1/2 cup jack and cheddar cheese, shredded,</p>
-  <p>1 tablespoon tortilla chips, crumbled</p>
+  {{ ingredientList }}
 </i></small>
 </div>
 

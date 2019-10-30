@@ -5,7 +5,10 @@
 <p><b>{{ recipeItem.title }}</b></p>
 <p>Score: {{ recipeItem.social_rank }}</p>
 
-<app-ingredient-list></app-ingredient-list>
+<app-ingredient-list
+  [recipeId]="recipeItem.recipe_id"
+>
+</app-ingredient-list>
 
 <button>Share!</button>
 <button>Print!</button>

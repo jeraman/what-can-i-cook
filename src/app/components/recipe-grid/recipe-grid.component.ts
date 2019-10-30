@@ -20,7 +20,6 @@ export class RecipeGridComponent implements OnInit {
     //reset the result pages
     this.recipeService.resetPage();
 
-    /*
     //RIGHT WAY TO DO IT!
     //check the following link for details on why I'm doing (data as any):
     // https://angular.io/guide/http
@@ -28,10 +27,10 @@ export class RecipeGridComponent implements OnInit {
                       .subscribe( data => {
                           this.recipeGrid = (data as any).recipes;
     });
-    */
+
 
     //placeholder function!
-    this.recipeGrid = this.recipeService.getRecipesPlaceholder(ingredients);
+    //this.recipeGrid = this.recipeService.getRecipesPlaceholder(ingredients);
   }
 
   loadMore() {

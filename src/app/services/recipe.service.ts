@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Recipe } from '../models/Recipe'
+import { DetailedRecipe } from '../models/DetailedRecipe'
 import { JSONRecipeFormat } from '../models/JSONRecipeFormat'
 import keyConfig from '../../assets/js/keyConfig.json';
 
@@ -13,8 +14,8 @@ import keyConfig from '../../assets/js/keyConfig.json';
 })
 
 export class RecipeService {
-  baseURL: string = "https://www.food2fork.com/api/search?";
-  ingredients: string;
+  baseURL: string = "https://www.food2fork.com/api/";
+  ingredientsQuery: string;
   pageNumber: number = 1;
   sort: string = "r";
 
@@ -22,21 +23,26 @@ export class RecipeService {
     //console.log(this.recipeURL);
   }
 
-  //querying by ingredients
-  //https://www.food2fork.com/api/search?key={YOUR_API_KEY}&q=chicken%20breast&page=2
-  formatSearchQuery():string {
-      return this.baseURL +
-              "key=" + keyConfig.key +
-              "&q=" + this.ingredients +
-              "&page=" + this.pageNumber +
-              "&sort=" + this.sort;
+  //getting one specific recipe
+  //https://www.food2fork.com/api/get?key={YOUR_API_KEY}&rId=35382
+  formatSearchIngredients(recipeId:string):string {
+    return this.baseURL + "get?" +
+            "key=" + keyConfig.key +
+            "&rId=" + recipeId;
   }
 
-  //getting one specific recipes
-  //https://www.food2fork.com/api/get?key={YOUR_API_KEY}&rId=35382
+  //querying by ingredients
+  //https://www.food2fork.com/api/search?key={YOUR_API_KEY}&q=chicken%20breast&page=2
+  formatSearchByIngredients():string {
+    return this.baseURL + "search?" +
+            "key=" + keyConfig.key +
+            "&q=" + this.ingredientsQuery +
+            "&page=" + this.pageNumber +
+            "&sort=" + this.sort;
+  }
 
-  setIngredients(ingredients:string) {
-    this.ingredients = ingredients;
+  setIngredients(ingredientsQuery:string) {
+    this.ingredientsQuery = ingredientsQuery;
   }
 
   resetPage() {
@@ -47,16 +53,24 @@ export class RecipeService {
     this.pageNumber = this.pageNumber+1;
   }
 
+  // get ingredients methods
+  getIngredients(recipeId:string) {
+    var query = this.formatSearchIngredients(recipeId);
+    console.log("my query is: " + query);
+    return this.http.get<JSONDetailedRecipeFormat[]>(query);
+  }
+
+  // get recipe methods
   getRecipes(ingredients:string):Observable<JSONRecipeFormat[]> {
     this.setIngredients(ingredients);
-    var query = this.formatSearchQuery();
+    var query = this.formatSearchByIngredients();
     console.log("my query is: " + query);
     return this.http.get<JSONRecipeFormat[]>(query);
   }
 
   loadMore():Observable<JSONRecipeFormat[]> {
     this.incrementPage();
-    var query = this.formatSearchQuery();
+    var query = this.formatSearchByIngredients();
     console.log("my query is: " + query);
     this.incrementPage();
     return this.http.get<JSONRecipeFormat[]>(query);
@@ -86,5 +100,7 @@ export class RecipeService {
       }
     ]
   }
+
+
 
 }
