@@ -68,11 +68,17 @@ export class IngredientListComponent implements OnInit {
                     this.url +
                     "%0a%0aWe already have the following ingredients:%0a - " +
                     //this.ingredientsToBeFiltered.join().replace(/,/g, "%0a - ") + "%0a" +
-                    this.ingredientsToBeFiltered.join("%0a - ") +
-                    "%0a%0aWe still need the following ingredients:%0a - " +
-                    //this.filteredIngredientList.join().replace(/,/g, "%0a - ") + "%0a" +
-                    this.filteredIngredientList.join("%0a - ") +
-                    "%0a%0aShould we give it a try? ;)";
+                    this.ingredientsToBeFiltered.join("%0a - ");
+
+    if (this.filteredIngredientList.length != 0) {
+        shareText += "%0a%0aWe still need the following ingredients:%0a - " +
+        //this.filteredIngredientList.join().replace(/,/g, "%0a - ") + "%0a" +
+        this.filteredIngredientList.join("%0a - ");
+    } else {
+        shareText += "%0a%0aWe don't need any other ingredient!";
+    }
+
+    shareText += "%0a%0aShould we give it a try? ;)";
 
     open("whatsapp://send?text="+shareText, ' ');
   }

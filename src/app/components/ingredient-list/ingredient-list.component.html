@@ -23,7 +23,7 @@ Great! You have all the ingredients for this one!
 </div>
 
 <button (click)="onShare()">Tell someone!</button>
-<button (click)="onPrint()">Print shopping list!</button>
+<button (click)="onPrint()" *ngIf="filteredIngredientList.length!=0">Print shopping list!</button>
 
 <p></p>
 
