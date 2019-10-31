@@ -21,7 +21,7 @@ export class SearchRecipesComponent implements OnInit {
     //this.searchRecipes.emit(formatedString);
     this.ingredients = this.ingredientsInput.split(',');
     this.ingredients = this.ingredients.filter(function(value, index, arr) {
-      return value.length>0;
+      return value.trim().length>0;
     });
     this.searchRecipes.emit(this.ingredients);
   }
