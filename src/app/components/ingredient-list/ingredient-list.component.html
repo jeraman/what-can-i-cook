@@ -1,9 +1,17 @@
 <div>
 
+<div *ngIf="filteredIngredientList.length!=0">
 <p *ngIf="ingredientList!=undefined">
 You're missing {{ filteredIngredientList.length }} ingredients!
 <button (click)="onClick()"> Which ones?</button>
 </p>
+</div>
+
+<div *ngIf="filteredIngredientList.length==0">
+<p>
+Great! You have all the ingredients for this one!
+</p>
+</div>
 
 <div name="ingredients" *ngIf="isHidden!=false">
 <ul *ngFor="let ingred of filteredIngredientList">
