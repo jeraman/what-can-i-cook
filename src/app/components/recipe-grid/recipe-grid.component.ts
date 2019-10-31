@@ -16,7 +16,7 @@ export class RecipeGridComponent implements OnInit {
   ngOnInit() {
   }
 
-  searchRecipes(ingredients:string) {
+  searchRecipes(ingredientsList:string[]) {
     //reset the result pages
     this.recipeService.resetPage();
 
@@ -24,7 +24,7 @@ export class RecipeGridComponent implements OnInit {
     //RIGHT WAY TO DO IT!
     //check the following link for details on why I'm doing (data as any):
     // https://angular.io/guide/http
-    this.recipeService.getRecipes(ingredients)
+    this.recipeService.getRecipes(ingredientsList)
                       .subscribe( data => {
                           this.recipeGrid = (data as any).recipes;
     });
@@ -33,7 +33,7 @@ export class RecipeGridComponent implements OnInit {
 
     //placeholder function!
     //this.recipeGrid = this.recipeService.getRecipesPlaceholder(ingredients);
-    this.recipeService.getRecipesPlaceholder(ingredients)
+    this.recipeService.getRecipesPlaceholder(ingredientsList)
                       .subscribe( data => {
                           this.recipeGrid = (data as any).recipes;
     });

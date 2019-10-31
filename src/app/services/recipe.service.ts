@@ -15,7 +15,7 @@ import keyConfig from '../../assets/js/keyConfig.json';
 
 export class RecipeService {
   baseURL: string = "https://www.food2fork.com/api/";
-  ingredientsQuery: string;
+  ingredientsList: string[];
   pageNumber: number = 1;
   sort: string = "r";
 
@@ -36,13 +36,18 @@ export class RecipeService {
   formatSearchByIngredients():string {
     return this.baseURL + "search?" +
             "key=" + keyConfig.key +
-            "&q=" + this.ingredientsQuery +
+            "&q=" + this.formatIngredientsString() +
             "&page=" + this.pageNumber +
             "&sort=" + this.sort;
   }
 
-  setIngredients(ingredientsQuery:string) {
-    this.ingredientsQuery = ingredientsQuery;
+  formatIngredientsString():string {
+    console.log(this.ingredientsList);
+    return (this.ingredientsList.join()).replace(/ /g, "%20");
+  }
+
+  setIngredients(ingredientsList:string) {
+    this.ingredientsList = ingredientsList;
   }
 
   resetPage() {
@@ -60,39 +65,28 @@ export class RecipeService {
     return this.http.get<JSONDetailedRecipeFormat[]>(query);
   }
 
-  // get ingredients methods
   getIngredientsPlaceholder(recipeId:string):Observable<JSONDetailedRecipeFormat[]> {
-    var query = "../../assets/placeholders/get-recipe-example.json";
+    var query = this.formatSearchIngredients(recipeId);
     console.log("my query is: " + query);
+    query = "../../assets/placeholders/get-recipe-example.json";
+    console.log("but we will use a placeholder instead as... " + query);
     return this.http.get<JSONDetailedRecipeFormat[]>(query);
-    /*
-    return {
-        "publisher": "Closet Cooking",
-        "f2f_url": "http://food2fork.com/view/35382",
-        "ingredients": [
-          "2 jalapeno peppers, cut in half lengthwise and seeded",
-          "2 slices sour dough bread",
-          "1 tablespoon butter, room temperature",
-          "2 tablespoons cream cheese, room temperature",
-          "1/2 cup jack and cheddar cheese, shredded",
-          "1 tablespoon tortilla chips, crumbled\n"
-        ],
-        "source_url": "http://www.closetcooking.com/2011/04/jalapeno-popper-grilled-cheese-sandwich.html",
-        "recipe_id": "35382",
-        "image_url": "http://static.food2fork.com/Jalapeno2BPopper2BGrilled2BCheese2BSandwich2B12B500fd186186.jpg",
-        "social_rank": 100,
-        "publisher_url": "http://closetcooking.com",
-        "title": "Jalapeno Popper Grilled Cheese Sandwich"
-
-      };
-      */
   }
 
   // get recipe methods
-  getRecipes(ingredients:string):Observable<JSONRecipeFormat[]> {
-    this.setIngredients(ingredients);
+  getRecipes(ingredientList:string[]):Observable<JSONRecipeFormat[]> {
+    this.setIngredients(ingredientList);
     var query = this.formatSearchByIngredients();
     console.log("my query is: " + query);
+    return this.http.get<JSONRecipeFormat[]>(query);
+  }
+
+  getRecipesPlaceholder(ingredientList:string[]):Recipe[] {
+    this.setIngredients(ingredientList);
+    var query = this.formatSearchByIngredients();
+    console.log("my query is: " + query);
+    query = "../../assets/placeholders/query-by-ingredients-example.json";
+    console.log("but we will use a placeholder instead as... " + query);
     return this.http.get<JSONRecipeFormat[]>(query);
   }
 
@@ -103,37 +97,4 @@ export class RecipeService {
     this.incrementPage();
     return this.http.get<JSONRecipeFormat[]>(query);
   }
-
-  getRecipesPlaceholder(ingredients:string):Recipe[] {
-    /*
-    return [
-      {
-        "publisher": "BBC Food",
-        "f2f_url": "http://food2fork.com/view/8c0314",
-        "title": "Chicken and cashew nut stir-fry",
-        "source_url": "http://www.bbc.co.uk/food/recipes/chickenandcashewnuts_89299",
-        "recipe_id": "8c0314",
-        "image_url": "http://static.food2fork.com/chickenandcashewnuts_89299_16x9986b.jpg",
-        "social_rank": 95.91061636245128,
-        "publisher_url": "http://www.bbc.co.uk/food"
-      },
-      {
-        "publisher": "Jamie Oliver",
-        "f2f_url": "http://food2fork.com/view/0beb06",
-        "title": "Roasted chicken breast with pancetta, leeks & thyme",
-        "source_url": "http://www.jamieoliver.com/recipes/chicken-recipes/roasted-chicken-breast-with-pancetta-leeks-and-thyme",
-        "recipe_id": "0beb06",
-        "image_url": "http://static.food2fork.com/466_1_1349094314_lrg2129.jpg",
-        "social_rank": 94.88568903341375,
-        "publisher_url": "http://www.jamieoliver.com"
-      }
-    ];
-    */
-    var query = "../../assets/placeholders/query-by-ingredients-example.json";
-    console.log("my query is: " + query);
-    return this.http.get<JSONRecipeFormat[]>(query);
-  }
-
-
-
 }

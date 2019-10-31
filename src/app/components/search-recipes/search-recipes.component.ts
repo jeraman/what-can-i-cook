@@ -6,7 +6,8 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./search-recipes.component.css']
 })
 export class SearchRecipesComponent implements OnInit {
-  private ingredients:string;
+  private ingredientsInput:string;
+  private ingredients:string[];
 
   @Output() searchRecipes: EventEmitter<any> = new EventEmitter();
 
@@ -16,8 +17,10 @@ export class SearchRecipesComponent implements OnInit {
   }
 
   onSubmit() {
-    var formatedString = this.ingredients.replace(/ /g, "%20");
-    this.searchRecipes.emit(formatedString);
+    //var formatedString = this.ingredientsInput.replace(/ /g, "%20");
+    //this.searchRecipes.emit(formatedString);
+    this.ingredients = this.ingredientsInput.split(',');;
+    this.searchRecipes.emit(this.ingredients);
   }
 
 }
