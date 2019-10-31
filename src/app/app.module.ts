@@ -9,6 +9,7 @@ import { RecipeGridComponent } from './components/recipe-grid/recipe-grid.compon
 import { RecipeItemComponent } from './components/recipe-item/recipe-item.component';
 import { SearchRecipesComponent } from './components/search-recipes/search-recipes.component';
 import { IngredientListComponent } from './components/ingredient-list/ingredient-list.component';
+import { FootbarComponent } from './components/footbar/footbar.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { IngredientListComponent } from './components/ingredient-list/ingredient
     RecipeGridComponent,
     RecipeItemComponent,
     SearchRecipesComponent,
-    IngredientListComponent
+    IngredientListComponent,
+    FootbarComponent
   ],
   imports: [
     BrowserModule,
