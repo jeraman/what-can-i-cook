@@ -60,15 +60,15 @@ export class RecipeService {
   // get ingredients methods
   getIngredients(recipeId:string):Observable<JSONDetailedRecipeFormat[]>  {
     var query = this.formatSearchIngredients(recipeId);
-    console.log("my query is: " + query);
+    //console.log("my query is: " + query);
     return this.http.get<JSONDetailedRecipeFormat[]>(query);
   }
 
   getIngredientsPlaceholder(recipeId:string):Observable<JSONDetailedRecipeFormat[]> {
     var query = this.formatSearchIngredients(recipeId);
-    console.log("my query is: " + query);
+    //console.log("my query is: " + query);
     query = "../../assets/placeholders/get-recipe-example.json";
-    console.log("but we will use this placeholder instead:" + query);
+    //console.log("but we will use this placeholder instead:" + query);
     return this.http.get<JSONDetailedRecipeFormat[]>(query);
   }
 
@@ -76,23 +76,23 @@ export class RecipeService {
   getRecipes(ingredientList:string[]):Observable<JSONRecipeFormat[]> {
     this.setIngredients(ingredientList);
     var query = this.formatSearchByIngredients();
-    console.log("my query is: " + query);
+    //console.log("my query is: " + query);
     return this.http.get<JSONRecipeFormat[]>(query);
   }
 
   getRecipesPlaceholder(ingredientList:string[]):Recipe[] {
     this.setIngredients(ingredientList);
     var query = this.formatSearchByIngredients();
-    console.log("my query is: " + query);
+    //console.log("my query is: " + query);
     query = "../../assets/placeholders/query-by-ingredients-example.json";
-    console.log("but we will use this placeholder instead:" + query);
+    //console.log("but we will use this placeholder instead:" + query);
     return this.http.get<JSONRecipeFormat[]>(query);
   }
 
   loadMore():Observable<JSONRecipeFormat[]> {
     this.incrementPage();
     var query = this.formatSearchByIngredients();
-    console.log("my query is: " + query);
+    //console.log("my query is: " + query);
     this.incrementPage();
     return this.http.get<JSONRecipeFormat[]>(query);
   }

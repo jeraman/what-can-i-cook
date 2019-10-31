@@ -25,23 +25,21 @@ export class RecipeGridComponent implements OnInit {
     //reset the result pages
     this.recipeService.resetPage();
 
-    /*
-    //RIGHT WAY TO DO IT!
-    //check the following link for details on why I'm doing (data as any):
-    // https://angular.io/guide/http
+    // getting real data
     this.recipeService.getRecipes(ingredientsList)
-                      .subscribe( data => {
+                      .subscribe( data =>  {
+                          if (data.error != undefined) return;
                           this.recipeGrid = (data as any).recipes;
-    });
-    */
+                        });
 
-
-    //placeholder function!
-    //this.recipeGrid = this.recipeService.getRecipesPlaceholder(ingredients);
-    this.recipeService.getRecipesPlaceholder(ingredientsList)
-                      .subscribe( data => {
-                          this.recipeGrid = (data as any).recipes;
-    });
+    //if there is a problem, alert user and use placeholder data instead
+    if(this.recipeGrid == undefined) {
+      alert("The app has reached the 50-queries limit for the day.\n\nUsing placeholders instead...");
+      this.recipeService.getRecipesPlaceholder(ingredientsList)
+                        .subscribe( data => {
+                            this.recipeGrid = (data as any).recipes;
+                          });
+    }
   }
 
   loadMore() {
@@ -51,7 +49,7 @@ export class RecipeGridComponent implements OnInit {
                             this.recipeGrid = this.recipeGrid.concat((data as any).recipes);
       });
     }
-    
+
     this.viewLimit += 6;
   }
 

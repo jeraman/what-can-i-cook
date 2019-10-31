@@ -28,28 +28,11 @@ export class IngredientListComponent implements OnInit {
   }
 
   getIngredients() {
-    /*
-    //RIGHT WAY TO DO IT!
-    //check the following link for details on why I'm doing (data as any):
-    // https://angular.io/guide/http
+
+    // getting real data
     this.recipeService.getIngredients(this.recipeId)
                       .subscribe( data => {
-                          this.ingredientList = (data as any).recipe.ingredients;
-                          this.filteredIngredientList = this.ingredientList;
-                          //filtering the ingredients the user already have
-                          for (let target of this.ingredientsToBeFiltered) {
-                            this.filteredIngredientList = this.ingredientList.filter(function(value, index, arr) {
-                              return !value.includes(target);
-                            });
-                          }
-    });
-    */
-
-
-    //placeholder function!
-    //this.ingredientList = this.recipeService.getIngredientsPlaceholder(this.recipeId).ingredients;
-    this.recipeService.getIngredientsPlaceholder(this.recipeId)
-                      .subscribe( data => {
+                          if (data.error != undefined) return;
                           this.ingredientList = (data as any).recipe.ingredients;
                           this.filteredIngredientList = this.ingredientList;
                           //filtering the ingredients the user already have
@@ -58,8 +41,23 @@ export class IngredientListComponent implements OnInit {
                               return !value.includes(target);
                             });
                           }
-    });
+                        });
 
+
+    //if there is a problem, alert user and use placeholder data instead
+    if(this.ingredientList.length <= 0) {
+      this.recipeService.getIngredientsPlaceholder(this.recipeId)
+                        .subscribe( data => {
+                            this.ingredientList = (data as any).recipe.ingredients;
+                            this.filteredIngredientList = this.ingredientList;
+                            //filtering the ingredients the user already have
+                            for (let target of this.ingredientsToBeFiltered) {
+                              this.filteredIngredientList = this.filteredIngredientList.filter(function(value, index, arr) {
+                                return !value.includes(target);
+                              });
+                            }
+                        });
+    }
   }
 
   onShare() {

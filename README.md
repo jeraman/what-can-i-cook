@@ -1,11 +1,11 @@
 # What Can I Cook?
 Want to finish the food in your fridge before expiration?
 
-No worries, this app is here for you.
+No worries, this app will help you.
 
 Tell it the food you have. Get recipe ideas.
 
-App created as an exercise to improve my Angular skills.
+Created as an exercise to improve my Angular skills.
 
 ## Technology used
 - [Angular CLI](https://github.com/angular/angular-cli) version 8.3.4;
