@@ -10,6 +10,7 @@ import { RecipeItemComponent } from './components/recipe-item/recipe-item.compon
 import { SearchRecipesComponent } from './components/search-recipes/search-recipes.component';
 import { IngredientListComponent } from './components/ingredient-list/ingredient-list.component';
 import { FootbarComponent } from './components/footbar/footbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FootbarComponent } from './components/footbar/footbar.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

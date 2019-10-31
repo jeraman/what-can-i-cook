@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+  margin: 50px;
+  margin-bottom: 25px;
+}
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+h1,
+app-recipe-grid,
+app-footbar,
+.subtitle{
+  text-align: center;
+}
+
+h1 {
+  font-size:50px;
+}
