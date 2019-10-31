@@ -8,9 +8,11 @@ import { RecipeService } from '../../services/recipe.service';
   templateUrl: './recipe-grid.component.html',
   styleUrls: ['./recipe-grid.component.css']
 })
+
 export class RecipeGridComponent implements OnInit {
   @Input() ingredientsToBeFiltered: string[];
-  recipeGrid:Recipe[];
+  private recipeGrid:Recipe[];
+  private viewLimit = 6;
 
   constructor(private recipeService:RecipeService) { }
 
@@ -43,10 +45,14 @@ export class RecipeGridComponent implements OnInit {
   }
 
   loadMore() {
-    this.recipeService.loadMore()
-                      .subscribe( data => {
-                          this.recipeGrid = this.recipeGrid.concat((data as any).recipes);
-    });
+    if (this.viewLimit%30 == 0 ) {
+      this.recipeService.loadMore()
+                        .subscribe( data => {
+                            this.recipeGrid = this.recipeGrid.concat((data as any).recipes);
+      });
+    }
+    
+    this.viewLimit += 6;
   }
 
 }

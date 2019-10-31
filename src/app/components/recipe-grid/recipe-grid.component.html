@@ -3,7 +3,7 @@
   <app-search-recipes (searchRecipes)="searchRecipes($event)"></app-search-recipes>
 
   <app-recipe-item
-    *ngFor="let recipe of recipeGrid"
+    *ngFor="let recipe of recipeGrid | slice:0:viewLimit;"
     [recipeItem]="recipe"
     [ingredientsToBeFiltered]="ingredientsToBeFiltered"
   >
