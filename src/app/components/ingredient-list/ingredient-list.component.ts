@@ -30,6 +30,7 @@ export class IngredientListComponent implements OnInit {
   }
 
   getIngredients() {
+    /*
     //RIGHT WAY TO DO IT!
     //check the following link for details on why I'm doing (data as any):
     // https://angular.io/guide/http
@@ -37,9 +38,10 @@ export class IngredientListComponent implements OnInit {
                       .subscribe( data => {
                           this.ingredientList = (data as any).recipe.ingredients;
     });
+    */
 
 
     //placeholder function!
-    //this.recipeGrid = this.recipeService.getRecipesPlaceholder(ingredients);
+    this.ingredientList = this.recipeService.getIngredientsPlaceholder(this.recipeId).ingredients;
   }
 }
