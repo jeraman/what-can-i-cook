@@ -14,6 +14,8 @@ export class IngredientListComponent implements OnInit {
 
   @Input() recipeId: string;
   @Input() ingredientsToBeFiltered: string[] = [];
+  @Input() title:string;
+  @Input() url:string;
 
   constructor(private recipeService:RecipeService) { }
 
@@ -58,6 +60,52 @@ export class IngredientListComponent implements OnInit {
                           }
     });
 
+  }
+
+  onShare() {
+    let shareText = "Hey! Just found this nice recipe:%0a*" +
+                    this.title + "*%0a" +
+                    this.url +
+                    "%0a%0aWe already have the following ingredients:%0a - " +
+                    //this.ingredientsToBeFiltered.join().replace(/,/g, "%0a - ") + "%0a" +
+                    this.ingredientsToBeFiltered.join("%0a - ") +
+                    "%0a%0aWe still need the following ingredients:%0a - " +
+                    //this.filteredIngredientList.join().replace(/,/g, "%0a - ") + "%0a" +
+                    this.filteredIngredientList.join("%0a - ") +
+                    "%0a%0aShould we give it a try? ;)";
+
+    open("whatsapp://send?text="+shareText, ' ');
+  }
+
+  onPrint() {
+    let newWindow = window.open('', '_blank', 'top=0,left=0,height=100%,width=600,height=400');
+    newWindow.document.open();
+    newWindow.document.write(`
+    <html>
+        <head>
+          <title>${this.title}</title>
+          <style>
+          </style>
+        </head>
+        <body>
+        <h1>${this.title}</h1>
+        Full recipe in: <br><a href="${this.url}">${this.url}</a>
+
+        <h2>You already have:</h2>
+        <ul><li>
+        ${this.ingredientsToBeFiltered.join("</a></li><li>")}
+        </li></ul>
+
+        <h2>You need to buy:</h2>
+        <ul><li>
+        ${this.filteredIngredientList.join("</a></li><li>")}
+        </li></ul>
+        </body>
+      </html>
+    `);
+    newWindow.print();
+    newWindow.document.close();
+    newWindow.onfocus=function(){ newWindow.close();}
   }
 
 }
