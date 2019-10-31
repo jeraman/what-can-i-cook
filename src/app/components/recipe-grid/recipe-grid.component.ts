@@ -32,7 +32,11 @@ export class RecipeGridComponent implements OnInit {
 
 
     //placeholder function!
-    this.recipeGrid = this.recipeService.getRecipesPlaceholder(ingredients);
+    //this.recipeGrid = this.recipeService.getRecipesPlaceholder(ingredients);
+    this.recipeService.getRecipesPlaceholder(ingredients)
+                      .subscribe( data => {
+                          this.recipeGrid = (data as any).recipes;
+    });
   }
 
   loadMore() {

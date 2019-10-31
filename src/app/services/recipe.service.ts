@@ -54,14 +54,18 @@ export class RecipeService {
   }
 
   // get ingredients methods
-  getIngredients(recipeId:string) {
+  getIngredients(recipeId:string):Observable<JSONDetailedRecipeFormat[]>  {
     var query = this.formatSearchIngredients(recipeId);
     console.log("my query is: " + query);
     return this.http.get<JSONDetailedRecipeFormat[]>(query);
   }
 
   // get ingredients methods
-  getIngredientsPlaceholder(recipeId:string):DetailedRecipe {
+  getIngredientsPlaceholder(recipeId:string):Observable<JSONDetailedRecipeFormat[]> {
+    var query = "../../assets/placeholders/get-recipe-example.json";
+    console.log("my query is: " + query);
+    return this.http.get<JSONDetailedRecipeFormat[]>(query);
+    /*
     return {
         "publisher": "Closet Cooking",
         "f2f_url": "http://food2fork.com/view/35382",
@@ -81,6 +85,7 @@ export class RecipeService {
         "title": "Jalapeno Popper Grilled Cheese Sandwich"
 
       };
+      */
   }
 
   // get recipe methods
@@ -100,6 +105,7 @@ export class RecipeService {
   }
 
   getRecipesPlaceholder(ingredients:string):Recipe[] {
+    /*
     return [
       {
         "publisher": "BBC Food",
@@ -122,6 +128,10 @@ export class RecipeService {
         "publisher_url": "http://www.jamieoliver.com"
       }
     ];
+    */
+    var query = "../../assets/placeholders/query-by-ingredients-example.json";
+    console.log("my query is: " + query);
+    return this.http.get<JSONRecipeFormat[]>(query);
   }
 
 

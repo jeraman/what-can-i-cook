@@ -42,6 +42,10 @@ export class IngredientListComponent implements OnInit {
 
 
     //placeholder function!
-    this.ingredientList = this.recipeService.getIngredientsPlaceholder(this.recipeId).ingredients;
+    //this.ingredientList = this.recipeService.getIngredientsPlaceholder(this.recipeId).ingredients;
+    this.recipeService.getIngredientsPlaceholder(this.recipeId)
+                      .subscribe( data => {
+                          this.ingredientList = (data as any).recipe.ingredients;
+    });
   }
 }
