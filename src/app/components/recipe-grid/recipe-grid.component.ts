@@ -13,6 +13,7 @@ export class RecipeGridComponent implements OnInit {
   @Input() ingredientsToBeFiltered: string[];
   private recipeGrid:Recipe[];
   private viewLimit = 6;
+  private displayedAPIErrorPopUp:boolean = false;
 
   constructor(private recipeService:RecipeService) { }
 
@@ -28,13 +29,18 @@ export class RecipeGridComponent implements OnInit {
     // getting real data
     this.recipeService.getRecipes(ingredientsList)
                       .subscribe( data =>  {
-                          if (data.error != undefined) return;
+                          if (data.error != undefined) {
+                            return;
+                          }
                           this.recipeGrid = (data as any).recipes;
                         });
 
     //if there is a problem, alert user and use placeholder data instead
-    if(this.recipeGrid == undefined) {
-      alert("The app has reached the 50-queries limit for the day.\n\nUsing placeholders instead...");
+    if(this.displayedAPIErrorPopUp || this.recipeGrid == undefined) {
+      if (!this.displayedAPIErrorPopUp) {
+        alert("The app has reached the 50-queries limit for the day.\n\nUsing placeholder data instead...");
+        this.displayedAPIErrorPopUp = true;
+      }
       this.recipeService.getRecipesPlaceholder(ingredientsList)
                         .subscribe( data => {
                             this.recipeGrid = (data as any).recipes;
