@@ -42,7 +42,6 @@ export class RecipeService {
   }
 
   formatIngredientsString():string {
-    console.log(this.ingredientsList);
     return (this.ingredientsList.join()).replace(/ /g, "%20");
   }
 
@@ -69,7 +68,7 @@ export class RecipeService {
     var query = this.formatSearchIngredients(recipeId);
     console.log("my query is: " + query);
     query = "../../assets/placeholders/get-recipe-example.json";
-    console.log("but we will use a placeholder instead as... " + query);
+    console.log("but we will use this placeholder instead:" + query);
     return this.http.get<JSONDetailedRecipeFormat[]>(query);
   }
 
@@ -86,7 +85,7 @@ export class RecipeService {
     var query = this.formatSearchByIngredients();
     console.log("my query is: " + query);
     query = "../../assets/placeholders/query-by-ingredients-example.json";
-    console.log("but we will use a placeholder instead as... " + query);
+    console.log("but we will use this placeholder instead:" + query);
     return this.http.get<JSONRecipeFormat[]>(query);
   }
 

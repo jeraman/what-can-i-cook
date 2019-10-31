@@ -6,18 +6,14 @@ import { RecipeService } from '../../services/recipe.service';
   templateUrl: './ingredient-list.component.html',
   styleUrls: ['./ingredient-list.component.css']
 })
+
 export class IngredientListComponent implements OnInit {
   private isHidden:boolean = false;
-  private ingredientList:string[];
-    /* example
-    <p>2 jalapeno peppers, cut in half lengthwise and seeded,</p>
-    <p>2 slices sour dough bread,</p>
-    <p>1 tablespoon butter, room temperature,</p>
-    <p>2 tablespoons cream cheese, room temperature,</p>
-    <p>1/2 cup jack and cheddar cheese, shredded,</p>
-    <p>1 tablespoon tortilla chips, crumbled</p>"
-    */
+  private ingredientList:string[] = [];
+  private filteredIngredientList:string[] = [];
+
   @Input() recipeId: string;
+  @Input() ingredientsToBeFiltered: string[] = [];
 
   constructor(private recipeService:RecipeService) { }
 
@@ -37,6 +33,13 @@ export class IngredientListComponent implements OnInit {
     this.recipeService.getIngredients(this.recipeId)
                       .subscribe( data => {
                           this.ingredientList = (data as any).recipe.ingredients;
+                          this.filteredIngredientList = this.ingredientList;
+                          //filtering the ingredients the user already have
+                          for (let target of this.ingredientsToBeFiltered) {
+                            this.filteredIngredientList = this.ingredientList.filter(function(value, index, arr) {
+                              return !value.includes(target);
+                            });
+                          }
     });
     */
 
@@ -46,6 +49,15 @@ export class IngredientListComponent implements OnInit {
     this.recipeService.getIngredientsPlaceholder(this.recipeId)
                       .subscribe( data => {
                           this.ingredientList = (data as any).recipe.ingredients;
+                          this.filteredIngredientList = this.ingredientList;
+                          //filtering the ingredients the user already have
+                          for (let target of this.ingredientsToBeFiltered) {
+                            this.filteredIngredientList = this.filteredIngredientList.filter(function(value, index, arr) {
+                              return !value.includes(target);
+                            });
+                          }
     });
+
   }
+
 }

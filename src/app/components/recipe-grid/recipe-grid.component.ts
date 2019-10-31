@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Recipe } from '../../models/Recipe';
 import { JSONRecipeFormat } from '../../models/JSONRecipeFormat';
 import { RecipeService } from '../../services/recipe.service';
@@ -9,6 +9,7 @@ import { RecipeService } from '../../services/recipe.service';
   styleUrls: ['./recipe-grid.component.css']
 })
 export class RecipeGridComponent implements OnInit {
+  @Input() ingredientsToBeFiltered: string[];
   recipeGrid:Recipe[];
 
   constructor(private recipeService:RecipeService) { }
@@ -17,6 +18,8 @@ export class RecipeGridComponent implements OnInit {
   }
 
   searchRecipes(ingredientsList:string[]) {
+    this.ingredientsToBeFiltered = ingredientsList;
+
     //reset the result pages
     this.recipeService.resetPage();
 

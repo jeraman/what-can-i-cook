@@ -1,12 +1,12 @@
 <div>
 
 <p *ngIf="ingredientList!=undefined">
-You're missing {{ ingredientList.length }} ingredients!
+You're missing {{ filteredIngredientList.length }} ingredients!
 <button (click)="onClick()"> Which ones?</button>
 </p>
 
 <div name="ingredients" *ngIf="isHidden!=false">
-<ul *ngFor="let ingred of ingredientList">
+<ul *ngFor="let ingred of filteredIngredientList">
   <li><small><i>
   {{ ingred }}
   </i></small></li>
