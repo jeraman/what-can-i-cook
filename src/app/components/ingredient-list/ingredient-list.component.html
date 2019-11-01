@@ -14,11 +14,11 @@ Great! You have all the ingredients for this one!
 </div>
 
 <div name="ingredients" *ngIf="isHidden!=false">
-<ul *ngFor="let ingred of filteredIngredientList">
-  <li><small><i>
+<p *ngFor="let ingred of filteredIngredientList">
+  <small><i>
   {{ ingred }}
-  </i></small></li>
-</ul>
+  </i></small>
+</p>
 <p></p>
 </div>
 
