@@ -3,7 +3,7 @@
 <div *ngIf="filteredIngredientList.length!=0">
 <p *ngIf="ingredientList!=undefined">
 You're missing {{ filteredIngredientList.length }} ingredients!
-<button (click)="onClick()"> Which ones?</button>
+<button mat-raised-button color="warn" (click)="onClick()"> Which ones?</button>
 </p>
 </div>
 
@@ -22,8 +22,10 @@ Great! You have all the ingredients for this one!
 <p></p>
 </div>
 
-<button (click)="onShare()">Tell someone!</button>
-<button (click)="onPrint()" *ngIf="filteredIngredientList.length!=0">Print shopping list!</button>
+<div class="search-buttons">
+    <button mat-flat-button (click)="onShare()">Tell someone!</button>
+    <button mat-flat-button (click)="onPrint()" *ngIf="filteredIngredientList.length!=0">Print shopping list!</button>
+</div>
 
 <p></p>
 

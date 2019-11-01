@@ -1,10 +1,35 @@
 <div>
 <!--p>search-recipes works!</p-->
+<div>
 <form class="form" (ngSubmit)="onSubmit()">
-    <input type="text" name="ingredients" placeholder="Type the ingredients you have in your fridge..." [(ngModel)]="ingredientsInput">
-    <!--input type="submit" value="Get recipe ideas!" class="btn"-->
-    <button mat-button color="warn">Get recipe ideas!</button>
+    <div>
+      <mat-form-field class="search-bar">
+      <!--input matInput name="ingredients" placeholder="Type the ingredients you have in your fridge..." [(ngModel)]="ingredientsInput"-->
+
+          <mat-chip-list #chipList aria-label="Ingredient selection">
+              <mat-chip *ngFor="let ingred of ingredients"
+                       [removable]="removable"
+                       (removed)="remove(ingred)">
+                       {{ ingred }}
+                       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+
+              <input placeholder="Type the ingredients you have in your fridge..."
+                     [matChipInputFor]="chipList"
+                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                     [matChipInputAddOnBlur]="addOnBlur"
+                     (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <!--input type="submit" value="Get recipe ideas!" class="btn"-->
+      <button mat-raised-button color="primary" class="get-button">Get recipe ideas!</button>
+    </div>
 </form>
+</div>
+<p></p>
 <p></p>
 <p></p>
 </div>

@@ -11,6 +11,9 @@ import { SearchRecipesComponent } from './components/search-recipes/search-recip
 import { IngredientListComponent } from './components/ingredient-list/ingredient-list.component';
 import { FootbarComponent } from './components/footbar/footbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material';
+import { MatInputModule, MatIconModule } from '@angular/material';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatChipsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

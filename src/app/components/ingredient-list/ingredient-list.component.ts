@@ -29,6 +29,7 @@ export class IngredientListComponent implements OnInit {
 
   getIngredients() {
 
+    /* UNCOMMENT
     // getting real data
     this.recipeService.getIngredients(this.recipeId)
                       .subscribe( data => {
@@ -42,6 +43,7 @@ export class IngredientListComponent implements OnInit {
                             });
                           }
                         });
+    */
 
 
     //if there is a problem, alert user and use placeholder data instead

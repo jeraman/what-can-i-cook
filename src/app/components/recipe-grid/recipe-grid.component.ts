@@ -26,6 +26,7 @@ export class RecipeGridComponent implements OnInit {
     //reset the result pages
     this.recipeService.resetPage();
 
+    /* UNCOMMENT
     // getting real data
     this.recipeService.getRecipes(ingredientsList)
                       .subscribe( data =>  {
@@ -34,6 +35,7 @@ export class RecipeGridComponent implements OnInit {
                           }
                           this.recipeGrid = (data as any).recipes;
                         });
+    */
 
     //if there is a problem, alert user and use placeholder data instead
     if(this.displayedAPIErrorPopUp || this.recipeGrid == undefined) {
