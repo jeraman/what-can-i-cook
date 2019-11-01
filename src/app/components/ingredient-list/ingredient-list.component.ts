@@ -8,9 +8,9 @@ import { RecipeService } from '../../services/recipe.service';
 })
 
 export class IngredientListComponent implements OnInit {
-  private isHidden:boolean = false;
-  private ingredientList:string[] = [];
-  private filteredIngredientList:string[] = [];
+  isHidden:boolean = false;
+  ingredientList:string[] = [];
+  filteredIngredientList:string[] = [];
 
   @Input() recipeId: string;
   @Input() ingredientsToBeFiltered: string[] = [];

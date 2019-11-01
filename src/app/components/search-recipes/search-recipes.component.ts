@@ -10,11 +10,11 @@ import {MatChipInputEvent} from '@angular/material/chips';
 })
 
 export class SearchRecipesComponent implements OnInit {
-  //private ingredientsInput:string;
-  private ingredients:string[] = [];
-  private visible:boolean = true;
-  private removable:boolean = true;
-  private addOnBlur:boolean = true;
+  //protected  ingredientsInput:string;
+  ingredients:string[] = [];
+  visible:boolean = true;
+  removable:boolean = true;
+  addOnBlur:boolean = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   @Output() searchRecipes: EventEmitter<any> = new EventEmitter();

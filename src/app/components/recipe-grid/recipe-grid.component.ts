@@ -11,9 +11,9 @@ import { RecipeService } from '../../services/recipe.service';
 
 export class RecipeGridComponent implements OnInit {
   @Input() ingredientsToBeFiltered: string[];
-  private recipeGrid:Recipe[];
-  private viewLimit = 6;
-  private displayedAPIErrorPopUp:boolean = false;
+  recipeGrid:Recipe[];
+  viewLimit = 6;
+  displayedAPIErrorPopUp:boolean = false;
 
   constructor(private recipeService:RecipeService) { }
 

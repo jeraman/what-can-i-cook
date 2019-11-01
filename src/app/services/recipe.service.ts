@@ -69,7 +69,8 @@ export class RecipeService {
   getIngredientsPlaceholder(recipeId:string):Observable<JSONDetailedRecipeFormat[]> {
     var query = this.formatSearchIngredients(recipeId);
     //console.log("my query is: " + query);
-    query = "../../assets/placeholders/get-recipe-example.json";
+    //  query = "../../assets/placeholders/get-recipe-example.json";
+    query = "https://raw.githubusercontent.com/jeraman/what-can-i-cook/master/src/assets/placeholders/get-recipe-example.json";
     //console.log("but we will use this placeholder instead:" + query);
     return this.http.get<JSONDetailedRecipeFormat[]>(query);
   }
@@ -86,7 +87,8 @@ export class RecipeService {
     this.setIngredients(ingredientList);
     var query = this.formatSearchByIngredients();
     //console.log("my query is: " + query);
-    query = "../../assets/placeholders/query-by-ingredients-example.json";
+    //query = "../../assets/placeholders/query-by-ingredients-example.json";
+    query = "https://raw.githubusercontent.com/jeraman/what-can-i-cook/master/src/assets/placeholders/query-by-ingredients-example.json";
     //console.log("but we will use this placeholder instead:" + query);
     return this.http.get<JSONRecipeFormat[]>(query);
   }
