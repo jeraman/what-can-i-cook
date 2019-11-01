@@ -1,21 +1,19 @@
 <div>
 
-<div *ngIf="filteredIngredientList.length!=0">
-  <div *ngIf="ingredientList!=undefined">
-    <div>
-    You're missing {{ filteredIngredientList.length }} ingredients!
+  <div *ngIf="filteredIngredientList.length!=0">
+    <div *ngIf="ingredientList!=undefined" title="Click to see/hide which ones!">
+      <button mat-raised-button color="warn" (click)="onClick()">
+        You're missing {{ filteredIngredientList.length }} ingredients!
+      </button>
     </div>
+    <p></p>
   </div>
-  <p></p>
-  <div>
-    <button mat-raised-button color="warn" (click)="onClick()"> Which ones?</button>
-  </div>
-</div>
 
 <div *ngIf="filteredIngredientList.length==0">
-<p>
-Great! You have all the ingredients for this one!
-</p>
+  <button mat-raised-button color="accent">
+    Great! You have all the ingredients for this one!
+  </button>
+  <p></p>
 </div>
 
 <div name="ingredients" *ngIf="isHidden!=false">

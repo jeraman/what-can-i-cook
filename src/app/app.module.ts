@@ -16,6 +16,7 @@ import { MatInputModule, MatIconModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     RecipeItemComponent,
     SearchRecipesComponent,
     IngredientListComponent,
-    FootbarComponent
+    FootbarComponent,
+    StarRatingComponent
   ],
   imports: [
     BrowserModule,
