@@ -32,7 +32,8 @@ export class IngredientListComponent implements OnInit {
     // getting real data
     this.recipeService.getIngredients(this.recipeId)
                       .subscribe( data => {
-                          if (data.error != undefined) return;
+                          if ((data as any).error != undefined)
+                            return;
                           this.ingredientList = (data as any).recipe.ingredients;
                           this.filteredIngredientList = this.ingredientList;
                           //filtering the ingredients the user already have

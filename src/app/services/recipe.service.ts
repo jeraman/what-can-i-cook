@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Recipe } from '../models/Recipe'
 import { DetailedRecipe } from '../models/DetailedRecipe'
 import { JSONRecipeFormat } from '../models/JSONRecipeFormat'
+import { JSONDetailedRecipeFormat } from '../models/JSONDetailedRecipeFormat'
+
 import keyConfig from '../../assets/js/keyConfig.json';
 
 //declare const getKey:any;
@@ -45,7 +47,7 @@ export class RecipeService {
     return (this.ingredientsList.join()).replace(/ /g, "%20");
   }
 
-  setIngredients(ingredientsList:string) {
+  setIngredients(ingredientsList:string[]) {
     this.ingredientsList = ingredientsList;
   }
 
@@ -80,7 +82,7 @@ export class RecipeService {
     return this.http.get<JSONRecipeFormat[]>(query);
   }
 
-  getRecipesPlaceholder(ingredientList:string[]):Recipe[] {
+  getRecipesPlaceholder(ingredientList:string[]):Observable<JSONRecipeFormat[]>  {
     this.setIngredients(ingredientList);
     var query = this.formatSearchByIngredients();
     //console.log("my query is: " + query);

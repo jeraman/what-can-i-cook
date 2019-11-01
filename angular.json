@@ -120,6 +120,10 @@
               "devServerTarget": "what-can-i-cook:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }

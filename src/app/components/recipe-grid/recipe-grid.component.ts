@@ -29,9 +29,8 @@ export class RecipeGridComponent implements OnInit {
     // getting real data
     this.recipeService.getRecipes(ingredientsList)
                       .subscribe( data =>  {
-                          if (data.error != undefined) {
+                          if ((data as any).error != undefined)
                             return;
-                          }
                           this.recipeGrid = (data as any).recipes;
                         });
 
