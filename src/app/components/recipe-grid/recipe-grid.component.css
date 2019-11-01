@@ -1,0 +1,10 @@
+
+.cards {
+  object-position: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  text-align: center;
+  display:inline-grid;
+  padding: 5px;
+}

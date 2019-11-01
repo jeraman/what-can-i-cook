@@ -1,16 +1,39 @@
 <div>
-<a href="{{ recipeItem.source_url }}" target="_blank">
-<img src="{{ recipeItem.image_url }}" alt="{{ recipeItem.title }}" width=300px height=300px>
-</a>
-<p><b>{{ recipeItem.title }}</b></p>
-<p>Score: {{ recipeItem.social_rank.toPrecision(3) }}</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ recipeItem.title.trim() }}</mat-card-title>
+    <mat-card-subtitle>By {{ recipeItem.publisher }}</mat-card-subtitle>
+  </mat-card-header>
+  <a href="{{ recipeItem.source_url }}" target="_blank">
+  <img mat-card-image src="{{ recipeItem.image_url }}" alt="{{ recipeItem.title }}">
+  </a>
+  <mat-card-content>
+    <p>Score: {{ recipeItem.social_rank.toPrecision(3) }}</p>
 
-<app-ingredient-list
-  [recipeId]="recipeItem.recipe_id"
-  [ingredientsToBeFiltered]="ingredientsToBeFiltered"
-  [title]="recipeItem.title"
-  [url]="recipeItem.source_url"
->
-</app-ingredient-list>
-
+    <app-ingredient-list
+      [recipeId]="recipeItem.recipe_id"
+      [ingredientsToBeFiltered]="ingredientsToBeFiltered"
+      [title]="recipeItem.title"
+      [url]="recipeItem.source_url"
+    >
+    </app-ingredient-list>
+  </mat-card-content>
+</mat-card>
 </div>
+
+<!--div>
+<mt-card>
+  <a href="{{ recipeItem.source_url }}" target="_blank">
+  <img src="{{ recipeItem.image_url }}" alt="{{ recipeItem.title }}" width=300px height=300px>
+  </a>
+  <p><b>{{ recipeItem.title }}</b></p>
+  <p>Score: {{ recipeItem.social_rank.toPrecision(3) }}</p>
+  <app-ingredient-list
+    [recipeId]="recipeItem.recipe_id"
+    [ingredientsToBeFiltered]="ingredientsToBeFiltered"
+    [title]="recipeItem.title"
+    [url]="recipeItem.source_url"
+  >
+  </app-ingredient-list>
+</mt-card>
+</div-->

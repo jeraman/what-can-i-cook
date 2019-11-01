@@ -12,4 +12,12 @@ Alternatives to these solutions can be found on [this post](https://hackr.io/blo
 ## Angular Materials
 I decided to give Angular Materials a try. I just loved [Google's Material Design](https://en.wikipedia.org/wiki/Material_Design) proposal: It's a bit abstract, but seems less web-specific and potentially extensible to other contexts. Moreover, Materials' components such as [Cards](https://material.angular.io/components/card/examples) and [Chips](https://material.angular.io/components/chips/overview) seems pretty suited to this project.
 
-First, I used [this short guide](https://material.angular.io/guide/getting-started) to setup things and get going.
+### My Experience
+
+My experience was good, but far from ideal.
+
+At first, I was able to setup and get things going easily using [this short guide](https://material.angular.io/guide/getting-started). The library seems easy and straightforward. However, I started struggling when I tried to use [Grid Lists](https://material.angular.io/components/grid-list/overview). I just wasn't able to get the layouts I wanted. Some devs argue that Materials provide poor support to [flex layout grids if compared to Bootstrap](https://www.amadousall.com/the-good-parts-of-bootstrap-4-you-are-missing-in-your-angular-material-projects/) (that is, supporting layout grids that dynamically adapts to the size of the screen). If you want to deal with layout grids properly, you need another library called [Flex Layout](https://github.com/angular/flex-layout) (also developed by the Angular team). Disappointing! In the end, I implemented my layout grid using pure CSS.
+
+Moreover, Bootstrap seems to support many more components (full list [here](https://getbootstrap.com/docs/4.3/components/alerts/)) than [Materials](https://material.angular.io/components/categories). One example I would have used is the [star rating component](https://ng-bootstrap.github.io/#/components/rating/examples). Materials' documentation does not seem as widespread as Bootstraps'.
+
+*Summary*: Materials is nice, but I will definitely give Bootstrap a try in my next project.

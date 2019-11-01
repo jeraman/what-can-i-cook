@@ -2,12 +2,17 @@
   <!--p>recipe-grid works!</p-->
   <app-search-recipes (searchRecipes)="searchRecipes($event)"></app-search-recipes>
 
-  <app-recipe-item
-    *ngFor="let recipe of recipeGrid | slice:0:viewLimit;"
+  <div class="cards"
+  *ngFor="let recipe of recipeGrid | slice:0:viewLimit;"
+  >
+
+  <app-recipe-item class="cards"
     [recipeItem]="recipe"
     [ingredientsToBeFiltered]="ingredientsToBeFiltered"
   >
   </app-recipe-item>
+  <p></p>
+  </div>
 
   <form class="form" (ngSubmit)="loadMore()" *ngIf="recipeGrid!=undefined">
       <button mat-raised-button color="primary">Load more!</button>

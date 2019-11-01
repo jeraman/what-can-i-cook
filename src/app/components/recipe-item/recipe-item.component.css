@@ -1,0 +1,19 @@
+
+mat-card {
+  width: 350px;
+  text-align: center;
+}
+
+mat-card-header {
+  width: 350px;
+  margin-bottom: 10px;
+}
+
+img {
+  position: relative;
+  float: center;
+  background-position: 50% 50%;
+  background-repeat:   no-repeat;
+  background-size:     cover;
+  object-fit: cover;
+}
