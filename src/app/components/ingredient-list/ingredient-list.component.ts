@@ -33,15 +33,16 @@ export class IngredientListComponent implements OnInit {
     this.recipeService.getIngredients(this.recipeId)
     //this.recipeService.getIngredientsPlaceholder(this.recipeId)
                       .subscribe( data => {
-                          if ((data as any).error != undefined)
+                          if ((data as any).error == undefined) {
+                            this.ingredientList = (data as any).recipe.ingredients;
+                            this.filteredIngredientList = this.ingredientList;
+                            //filtering the ingredients the user already have
+                            for (let target of this.ingredientsToBeFiltered) {
+                              this.filteredIngredientList = this.filteredIngredientList.filter(function(value, index, arr) {
+                                return !value.includes(target);
+                              });
+                            }
                             return;
-                          this.ingredientList = (data as any).recipe.ingredients;
-                          this.filteredIngredientList = this.ingredientList;
-                          //filtering the ingredients the user already have
-                          for (let target of this.ingredientsToBeFiltered) {
-                            this.filteredIngredientList = this.filteredIngredientList.filter(function(value, index, arr) {
-                              return !value.includes(target);
-                            });
                           }
 
                           //if there is a problem, alert user and use placeholder data instead

@@ -33,11 +33,10 @@ export class RecipeGridComponent implements OnInit {
     this.recipeService.getRecipes(ingredientsList)
     //this.recipeService.getRecipesPlaceholder(ingredientsList)
                       .subscribe( data =>  {
-                          if ((data as any).error != undefined) {
-                            console.log("data error exists!");
+                          if ((data as any).error == undefined) {
+                            this.recipeGrid = (data as any).recipes;
                             return;
                           }
-                          this.recipeGrid = (data as any).recipes;
 
                           //if there is a problem, alert user and use placeholder data instead
                           if(this.displayedAPIErrorPopUp || this.recipeGrid == undefined) {
