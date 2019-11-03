@@ -44,11 +44,11 @@ export class RecipeService {
   }
 
   formatIngredientsString():string {
-    return (this.ingredientsList.join()).replace(/ /g, "%20");
+    return (this.ingredientsList.join()).replace(/,/g, "%20");
   }
 
-  setIngredients(ingredientsList:string[]) {
-    this.ingredientsList = ingredientsList;
+  setIngredients(ingredients:string[]) {
+    this.ingredientsList = ingredients;
   }
 
   resetPage() {
@@ -79,14 +79,14 @@ export class RecipeService {
   getRecipes(ingredientList:string[]):Observable<JSONRecipeFormat[]> {
     this.setIngredients(ingredientList);
     var query = this.formatSearchByIngredients();
-    //console.log("my query is: " + query);
+    console.log("my query is: " + query);
     return this.http.get<JSONRecipeFormat[]>(query);
   }
 
   getRecipesPlaceholder(ingredientList:string[]):Observable<JSONRecipeFormat[]>  {
     this.setIngredients(ingredientList);
     var query = this.formatSearchByIngredients();
-    //console.log("my query is: " + query);
+    console.log("my query is: " + query);
     //query = "../../assets/placeholders/query-by-ingredients-example.json";
     query = "https://raw.githubusercontent.com/jeraman/what-can-i-cook/master/src/assets/placeholders/query-by-ingredients-example.json";
     //console.log("but we will use this placeholder instead:" + query);
@@ -97,7 +97,6 @@ export class RecipeService {
     this.incrementPage();
     var query = this.formatSearchByIngredients();
     //console.log("my query is: " + query);
-    this.incrementPage();
     return this.http.get<JSONRecipeFormat[]>(query);
   }
 }

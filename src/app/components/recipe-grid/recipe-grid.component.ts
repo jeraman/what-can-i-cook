@@ -26,25 +26,33 @@ export class RecipeGridComponent implements OnInit {
     //reset the result pages
     this.recipeService.resetPage();
 
-    // getting real data
-    this.recipeService.getRecipes(ingredientsList)
-                      .subscribe( data =>  {
-                          if ((data as any).error != undefined)
-                            return;
-                          this.recipeGrid = (data as any).recipes;
-                        });
+    console.log(ingredientsList.length)
+    console.log(ingredientsList)
 
-    //if there is a problem, alert user and use placeholder data instead
-    if(this.displayedAPIErrorPopUp || this.recipeGrid == undefined) {
-      if (!this.displayedAPIErrorPopUp) {
-        alert("The app has reached the 50-queries limit for the day.\n\nUsing placeholder data instead...");
-        this.displayedAPIErrorPopUp = true;
-      }
-      this.recipeService.getRecipesPlaceholder(ingredientsList)
-                        .subscribe( data => {
-                            this.recipeGrid = (data as any).recipes;
-                          });
-    }
+    // getting real data
+    //this.recipeService.getRecipes(ingredientsList)
+    this.recipeService.getRecipesPlaceholder(ingredientsList)
+                      .subscribe( data =>  {
+                          if ((data as any).error != undefined) {
+                            console.log("data error exists!");
+                            return;
+                          }
+                          this.recipeGrid = (data as any).recipes;
+
+                          //if there is a problem, alert user and use placeholder data instead
+                          if(this.displayedAPIErrorPopUp || this.recipeGrid == undefined) {
+                            console.log(this.recipeGrid);
+                            if (!this.displayedAPIErrorPopUp) {
+                              alert("The app has reached the 50-queries limit for the day.\n\nUsing placeholder data instead...");
+                              this.displayedAPIErrorPopUp = true;
+                            }
+                            this.recipeService.getRecipesPlaceholder(ingredientsList)
+                                              .subscribe( data => {
+                                                  this.recipeGrid = (data as any).recipes;
+                                                });
+                            console.log(this.recipeGrid);
+                          }
+                      });
   }
 
   loadMore() {
