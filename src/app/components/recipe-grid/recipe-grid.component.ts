@@ -56,10 +56,17 @@ export class RecipeGridComponent implements OnInit {
 
   loadMore() {
     if (this.viewLimit%30 == 0 ) {
-      this.recipeService.loadMore()
-                        .subscribe( data => {
-                            this.recipeGrid = this.recipeGrid.concat((data as any).recipes);
-      });
+      if (this.displayedAPIErrorPopUp) {
+        this.recipeService.loadMorePlaceholder()
+                          .subscribe( data => {
+                              this.recipeGrid = this.recipeGrid.concat((data as any).recipes);
+        });
+      } else {
+        this.recipeService.loadMore()
+                          .subscribe( data => {
+                              this.recipeGrid = this.recipeGrid.concat((data as any).recipes);
+        });
+      }
     }
 
     this.viewLimit += 6;

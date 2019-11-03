@@ -99,4 +99,12 @@ export class RecipeService {
     //console.log("my query is: " + query);
     return this.http.get<JSONRecipeFormat[]>(query);
   }
+
+  loadMorePlaceholder():Observable<JSONRecipeFormat[]> {
+    this.incrementPage();
+    var query = this.formatSearchByIngredients();
+    //console.log("my query is: " + query);
+    query = "https://raw.githubusercontent.com/jeraman/what-can-i-cook/master/src/assets/placeholders/query-by-ingredients-example.json";
+    return this.http.get<JSONRecipeFormat[]>(query);
+  }
 }
