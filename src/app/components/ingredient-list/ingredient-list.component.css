@@ -1,1 +1,6 @@
 
+button {
+  max-width: 80%;
+  white-space: normal;
+  word-wrap: break-word;
+}

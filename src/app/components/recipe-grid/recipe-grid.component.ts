@@ -30,8 +30,8 @@ export class RecipeGridComponent implements OnInit {
     console.log(ingredientsList)
 
     // getting real data
-    //this.recipeService.getRecipes(ingredientsList)
-    this.recipeService.getRecipesPlaceholder(ingredientsList)
+    this.recipeService.getRecipes(ingredientsList)
+    //this.recipeService.getRecipesPlaceholder(ingredientsList)
                       .subscribe( data =>  {
                           if ((data as any).error != undefined) {
                             console.log("data error exists!");

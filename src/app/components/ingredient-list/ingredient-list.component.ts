@@ -30,8 +30,8 @@ export class IngredientListComponent implements OnInit {
   getIngredients() {
 
     // getting real data
-    //this.recipeService.getIngredients(this.recipeId)
-    this.recipeService.getIngredientsPlaceholder(this.recipeId)
+    this.recipeService.getIngredients(this.recipeId)
+    //this.recipeService.getIngredientsPlaceholder(this.recipeId)
                       .subscribe( data => {
                           if ((data as any).error != undefined)
                             return;
