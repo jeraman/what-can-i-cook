@@ -12,7 +12,7 @@ Tell it the food you have. Get recipe ideas.
 You can try it out at:
 > [https://jeraman.info/what-can-i-cook](https://jeraman.info/what-can-i-cook)
 
-If you're interested, I also wrote a few words about the making of this project [here](./research/readme.md).
+If you're interested, I also wrote a few words about the making of this project [here](./research/README.md).
 
 ## Technology used
 - [Angular CLI](https://github.com/angular/angular-cli) version 8.3.4;
