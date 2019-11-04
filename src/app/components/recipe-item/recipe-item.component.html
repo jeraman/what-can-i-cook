@@ -9,10 +9,10 @@
   <img mat-card-image src="{{ recipeItem.image_url }}" alt="{{ recipeItem.title }}">
   </a>
   <mat-card-content>
-    <p><b>Score: {{ (recipeItem.social_rank*5/100).toPrecision(3) }} / 5.00 </b></p>
-    <!--app-star-rating
-      [rating]="(recipeItem.social_rank*5/100).toPrecision(3)"
-    ></app-star-rating-->
+    <!--p><b>Score: {{ (recipeItem.social_rank*5/100).toPrecision(3) }} / 5.00 </b></p-->
+    <app-star-rating
+    [rating]="(recipeItem.social_rank*5/100)"
+    ></app-star-rating>
 
     <app-ingredient-list
       [recipeId]="recipeItem.recipe_id"

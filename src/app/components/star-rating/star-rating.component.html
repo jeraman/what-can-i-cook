@@ -1,0 +1,25 @@
+<div>
+<!--p><b>Score: {{ rating }} / 5.00 </b></p-->
+<div>
+  Rating: 
+  <span
+    class="fa fa-star checked"
+    *ngFor="let star of fullStars"
+    >
+  </span>
+
+  <span
+    class="fa fa-star-half-o checked"
+    *ngFor="let star of midStars"
+    >
+  </span>
+
+  <span
+    class="fa fa-star-o checked"
+    *ngFor="let star of emptyStars"
+    >
+  </span>
+</div>
+<p></p>
+
+</div>
