@@ -44,7 +44,7 @@ export class RecipeService {
   }
 
   formatIngredientsString():string {
-    return (this.ingredientsList.join()).replace(/,/g, "%20");
+    return (this.ingredientsList.join(",")).replace(/ /g, "%20");
   }
 
   setIngredients(ingredients:string[]) {

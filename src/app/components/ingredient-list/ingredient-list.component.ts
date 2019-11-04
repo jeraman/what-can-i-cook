@@ -39,7 +39,7 @@ export class IngredientListComponent implements OnInit {
                             //filtering the ingredients the user already have
                             for (let target of this.ingredientsToBeFiltered) {
                               this.filteredIngredientList = this.filteredIngredientList.filter(function(value, index, arr) {
-                                return !value.includes(target);
+                                return !value.toLowerCase().includes(target.toLowerCase());
                               });
                             }
                             return;
@@ -54,7 +54,7 @@ export class IngredientListComponent implements OnInit {
                                                   //filtering the ingredients the user already have
                                                   for (let target of this.ingredientsToBeFiltered) {
                                                     this.filteredIngredientList = this.filteredIngredientList.filter(function(value, index, arr) {
-                                                      return !value.includes(target);
+                                                      return !value.toLowerCase().includes(target.toLowerCase());
                                                     });
                                                   }
                                               });
