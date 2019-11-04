@@ -2,8 +2,8 @@
 One critical question is where to find the recipes database. Some possible options are:
 
 - [Allrecipes REST API](https://apps.allrecipes.com/): While this seems hosted inside AllRecipes servers, I wasn't able to find further info on how to use this;
-- [API BigOven](http://api.bigoven.com/): A paid REST API. Won't work for me;
-- [python-allrecipes](http://api.bigoven.com/): A webcrawler-based solution;
+- [API BigOven](https://api.bigoven.com/): A paid REST API. Won't work for me;
+- [python-allrecipes](https://api.bigoven.com/): A webcrawler-based solution;
 - [Food2Fork](https://www.food2fork.com/about/api): A REST API that is free for educational purposes, gathering recipes from several different sources. Perfect! Free queries are limited to 50/day.
 
 ## Food2Fork
