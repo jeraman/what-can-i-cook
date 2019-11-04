@@ -1,4 +1,4 @@
-# Database
+# Backend
 One critical question is where to find the recipes database. Some possible options are:
 
 - [Allrecipes REST API](https://apps.allrecipes.com/): While this seems hosted inside AllRecipes servers, I wasn't able to find further info on how to use this;
